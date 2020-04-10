@@ -1,4 +1,4 @@
-<div>
+<div><br><br>
 	<h1> STOP WATCH </h1>
 	<button *ngIf="!timmerStatus; else afterStart" (click)="onStartTimer()">Start Timer</button>
 	<ng-template #afterStart>
@@ -17,11 +17,9 @@
 	<br><br>
 	<button *ngIf="timmerStatus" (click)="logLap()">Lap</button>
 	<div *ngIf="timerLog.length">
-		<h2>Time Laps</h2>
-		<div *ngFor="let lap of timerLog">
-			<p>{{time | date: ms2time(lap)}}</p>
+		<h2>----- Time Laps -----</h2>
+		<div *ngFor="let lap of timerLog; let i = index">
+			<p>{{i + 1}}.&#160;&#160;<b>{{time | date: ms2time(lap)}}</b></p>
 		</div>
 	</div>
-
-
 </div>
