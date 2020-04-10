@@ -2,22 +2,26 @@
 	<h1> STOP WATCH </h1>
 	<button *ngIf="!timmerStatus; else afterStart" (click)="onStartTimer()">Start Timer</button>
 	<ng-template #afterStart>
-		<div>
-			<button (click)="onStopTimer()">Pause Timer</button>&#160;
-			<button (click)="onStopTimer(true)">Reset Timer</button>
+		<div *ngIf="timmerValue != null; else pauseAfter">
+			<button (click)="onStopTimer('pause')">Pause Timer</button>&#160;
+			<button (click)="onStopTimer('stop')">Reset Timer</button>
 		</div>
+		<ng-template #pauseAfter>
+      <button (click)="onStartTimer()">Restart Timer</button>&#160;
+			<button (click)="onStopTimer('stop')">Reset Timer</button>
+		</ng-template>
 	</ng-template>
 	<br><br>
 	<p>h : m : s : ms</p>
 	{{time | date: ms2time()}}
-  	<br><br>
-  	<button *ngIf="timmerStatus" (click)="logLap()">Lap</button>
-    <div *ngIf="timerLog.length">
-      <h2>Time Laps</h2>
-      <div *ngFor="let lap of timerLog">
-        <p>{{time | date: ms2time(lap)}}</p>
-      </div>
-    </div>
+	<br><br>
+	<button *ngIf="timmerStatus" (click)="logLap()">Lap</button>
+	<div *ngIf="timerLog.length">
+		<h2>Time Laps</h2>
+		<div *ngFor="let lap of timerLog">
+			<p>{{time | date: ms2time(lap)}}</p>
+		</div>
+	</div>
 
 
 </div>

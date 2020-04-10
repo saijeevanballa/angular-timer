@@ -21,10 +21,13 @@ export class TimerComponent implements OnInit {
     }, 10);
   }
 
-  onStopTimer() {
-    console.log(this.timmerValue, "before")
+  onStopTimer(value) {
     clearInterval(this.timmerValue);
-    console.log(this.timmerValue, "after")
+    if (value == "stop") {
+      this.timerLog = [],this.timmerStatus = false,this.time = 0  
+    } else if (value == "pause") {
+      this.timmerValue = null
+    }
   }
 
   logLap() {
