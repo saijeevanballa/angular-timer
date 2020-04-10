@@ -1,8 +1,9 @@
 <div>
 	<h1> STOP WATCH </h1><br><br>
   <button (click)="onStartTimer()">Start Timer</button><br><br>
-  {{time | date: sec2time()}}
   <p>h : m : s : ms</p>
+  {{time | date: ms2time()}}
+  
 
 
 </div>
