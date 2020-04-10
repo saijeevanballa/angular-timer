@@ -6,16 +6,29 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./timer.component.css"]
 })
 export class TimerComponent implements OnInit {
-  public time;
-  public timmerValue;
+  public time: any;
+  public timmerValue: any;
+  public timerLog = [];
+  public timmerStatus = false;
   constructor() {}
   ngOnInit() {
     this.time = 0;
   }
-  onStartTimer() {
+  onStartTimer(value) {
+    this.timmerStatus = true;
     this.timmerValue = setInterval(() => {
       this.time += 10;
     }, 10);
+  }
+
+  onStopTimer() {
+    console.log(this.timmerValue, "before")
+    clearInterval(this.timmerValue);
+    console.log(this.timmerValue, "after")
+  }
+
+  logLap() {
+    this.timerLog.push(this.time);
   }
 
   ms2time(timeInMs = this.time) {
