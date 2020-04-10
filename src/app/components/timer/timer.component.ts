@@ -7,15 +7,15 @@ import { Component, OnInit } from "@angular/core";
 })
 export class TimerComponent implements OnInit {
   public time;
+  public timmerValue;
   constructor() {}
   ngOnInit() {
     this.time = 0;
   }
   onStartTimer() {
-    setInterval(() => {
-      this.time += 1;
-      // console.log(this.time)
-    }, 1);
+    this.timmerValue = setInterval(() => {
+      this.time += 10;
+    }, 10);
   }
 
   ms2time(timeInMs = this.time) {
@@ -23,9 +23,10 @@ export class TimerComponent implements OnInit {
       time: any = parseFloat(timeInMs),
       hours = Math.floor(time / 3600000),
       minutes = Math.floor(time / 60000) % 60,
-      seconds = Math.floor(time / 1000) % 60 ,
-      milliseconds = time.length >= 3 ? time.slice(-2) : time;
-    // console.log(this.time);
-    return `${pad(hours, 2)} : ${pad(minutes, 2)} : ${pad(seconds, 2)} : ${pad(milliseconds,2)}`;
+      seconds = Math.floor(time / 1000) % 60,
+      milliseconds =
+        time.toString().length >= 3 ? time.toString().slice(-3, -1) : time;
+    return `${pad(hours, 2)} : ${pad(minutes, 2)} : ${pad(seconds, 2)} : 
+    ${pad(milliseconds, 2)}`;
   }
 }
